@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_app/task_data.dart';
 import 'package:todoey_app/screen_widgets/add_task_screen.dart';
 
 import '../models/task.dart';
@@ -11,14 +13,17 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy eggs'),
-    Task(name: 'Buy bread'),
-  ];
+  // List<Task> tasks = [
+  //   Task(name: 'Buy milk'),
+  //   Task(name: 'Buy eggs'),
+  //   Task(name: 'Buy bread'),
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    final tasksProvider = Provider.of<TaskData>(context);
+    final tasks = tasksProvider.tasks;
+
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
@@ -27,9 +32,10 @@ class _TaskScreenState extends State<TaskScreen> {
           showModalBottomSheet(
             context: context,
             builder: (context) => AddTaskScreen((newTaskTitle) {
-              setState(() {
-                tasks.add(Task(name: newTaskTitle));
-              });
+              tasksProvider.addTask(Task(name: newTaskTitle));
+              // setState(() {
+              //   tasks.add(Task(name: newTaskTitle));
+              // });
               Navigator.pop(context);
             }),
           );
