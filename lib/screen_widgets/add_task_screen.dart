@@ -38,6 +38,7 @@ class AddTaskScreen extends StatelessWidget {
             ),
             onPressed: () {
               addTaskCallback(newTaskTitle);
+              Navigator.pop(context);
             },
           ),
         ],

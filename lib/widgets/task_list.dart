@@ -6,7 +6,7 @@ import '../models/task.dart';
 class TasksList extends StatefulWidget {
 
   final List<Task> tasks;
-  TasksList( this.tasks);
+  TasksList(this.tasks);
 
   @override
   State<TasksList> createState() => _TasksListState();
@@ -18,12 +18,13 @@ class _TasksListState extends State<TasksList> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
+        final task = widget.tasks[index];
         return TaskTile(
-          isChecked: widget.tasks[index].isDone,
-          taskTitle: widget.tasks[index].name,
+          isChecked: task.isDone,
+          taskTitle: task.name,
           checkboxCallback: (checkboxState){
             setState(() {
-              widget.tasks[index].toggleDone();
+              task.toggleDone();
             });
           },
 
