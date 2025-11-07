@@ -84,7 +84,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 ),
                 color: Colors.white,
               ),
-              child: TasksList(tasks),
+              child: TasksList(),
             ),
           ),
         ],

@@ -26,8 +26,7 @@ int get taskCount {
     notifyListeners();
   }
 
-
-  void removeTask(Task task){
+  void deleteTask(Task task){
     _tasks.remove(task);
     notifyListeners();
   }
